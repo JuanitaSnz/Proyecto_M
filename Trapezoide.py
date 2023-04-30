@@ -49,7 +49,9 @@ def trapecio(fun,ai,bi,ntrap):
     for i in range(0,puntos,1):
         plt.axvline(x[i],color="w")
     plt.fill_between(x,0,fi,color='yellow')
-    plt.show()
+    plt.title('Trapezoide')
+
+    return[plt.gcf(),n_trapecios,area_bajo,error]
 
 
 

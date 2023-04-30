@@ -29,10 +29,10 @@ def biseccion(f,a,b):
 
     tabla = np.array(tabla)
 
-    print('[xi, xu, xr, fxi, fxr, f]')
-    print(tabla)
-    print('Error: ', error)
-    print('Raiz en: ', xr)
+    #print('[xi, xu, xr, fxi, fxr, f]')
+    #print(tabla)
+    #print('Error: ', error)
+    #print('Raiz en: ', xr)
     fi = fx(x)
     plt.axvline(0, color='k')
     plt.axhline(0, 0, color='k')
@@ -41,4 +41,4 @@ def biseccion(f,a,b):
     if xi != np.nan:
         plt.axvline(xi)
     plt.plot(xi, 0, 'ro')
-    return [plt, tabla, error, xr]
+    return [plt.gcf(), tabla, error, xr]

@@ -3,21 +3,20 @@ import matplotlib.pyplot as plt
 
 #Funciones
 def punto(f,g,a,e,it):
-
+    error=[]
     def puntofijo(gx, a, tolera, iteramax=15):
         i = 1
         b = gx(a)
         tramo = abs(a - b)
-
         while (tramo >= tolera and i<=iteramax):
             a = b
             b = gx(a)
             tramo = abs(b - a)
+            error.append(tramo)
             i = i + 1
         respuesta = b
 
         #Validar respuesta
-
         if (i >= iteramax):
             respuesta = np.nan
         return (respuesta)
@@ -38,9 +37,11 @@ def punto(f,g,a,e,it):
     muestras = 100
     tramos = 50
 
+
     #Procedimiento
 
     respuesta = puntofijo(gx, a, tolera)
+    err=error[-1]
     xi = np.linspace(a, b, muestras)
     fi = fx(xi)
     gi = gx(xi)
@@ -48,7 +49,6 @@ def punto(f,g,a,e,it):
 
     #Salidas
 
-    print(respuesta)
     plt.plot(xi, fi, label='f(x)')
     plt.plot(xi, gi, label='g(x)')
     plt.plot(xi, yi, label='(y=x)')
@@ -62,5 +62,5 @@ def punto(f,g,a,e,it):
     plt.plot(respuesta, 0, 'ro', label='raiz')
     plt.title('Punto Fijo')
     plt.legend()
-    plt.show()
+    return [plt.gcf(), respuesta,err]
     exit()

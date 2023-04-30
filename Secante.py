@@ -21,7 +21,7 @@ def secante(f,a,b,e):
         deltax = abs(xnuevo-xi)
         tabla.append([xi,xnuevo,deltax])
         xi = xnuevo
-        print('Deltax',deltax)
+        #print('Deltax',deltax)
 
         # convierte la lista a un arreglo.
     tabla = np.array(tabla)
@@ -36,9 +36,9 @@ def secante(f,a,b,e):
     if xi != np.nan:
         plt.axvline(xi)
     plt.plot(x,fi,label='f(x)')
-    plt.axhline(0, color='k')
+    plt.axvline(0, color='k')
     plt.axhline(0, 0,color='k')
     plt.title('Secante')
     plt.legend()
     plt.plot(xi,0,'ro')
-    plt.show()
+    return[plt.gcf(),xi,deltax,tabla]
