@@ -35,9 +35,9 @@ def simpson(f,ai,bi,trap):
             x = np.linspace(a, b, n_trapecios + 1)
             y = f(x)
             T = ((b - a) / (6 * n_trapecios)) * (f(a) + 4 * sum + 2 * np.sum(y[1:-1]) + f(b))
-            print('El area bajo la curva es: ', np.abs(T))
+            #print('El area bajo la curva es: ', np.abs(T))
             error = ((b - a) ** 5 / (180 * n_trapecios ** 4)) * dr4
-            print("El valor del error es :" + str(error))
+            #print("El valor del error es :" + str(error))
             graficar=True
         except ZeroDivisionError:
             print("La función no se puede evaluar en cero")
@@ -60,4 +60,5 @@ def simpson(f,ai,bi,trap):
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_title('Método de Simpson')
-        plt.show()
+
+    return[plt.gcf(),np.abs(T),error]

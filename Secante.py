@@ -28,11 +28,11 @@ def secante(f,a,b,e):
     n = len(tabla)
     fi = fx(x)
     # SALIDA
-    print(['xi', 'xnuevo', 'deltax'])
-    np.set_printoptions(precision = 4)
-    print(tabla)
-    print('raiz en: ', xi)
-    print('con error de: ',deltax)
+    #print(['xi', 'xnuevo', 'deltax'])
+    #np.set_printoptions(precision = 4)
+    #print(tabla)
+    #print('raiz en: ', xi)
+    #print('con error de: ',deltax)
     if xi != np.nan:
         plt.axvline(xi)
     plt.plot(x,fi,label='f(x)')
