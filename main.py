@@ -380,7 +380,7 @@ class MainWindow:
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o\n existe una division entre cero", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functionsec.get() == '' or self.entry_x1sec.get() == '' or self.entry_errsec.get() == '' or self.entry_x0sec.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowsec)
@@ -389,7 +389,7 @@ class MainWindow:
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="Por favor ingrese todos los datos", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
-        elif '/x' in self.entry_functionsec.get() and float(self.entry_x1sec.get()) >= 0:
+        elif '/x' in self.entry_functionsec.get() and float(self.entry_x1sec.get()) == 0:
             self.windowsalert = tkinter.Toplevel(self.windowsec)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
@@ -556,7 +556,7 @@ class MainWindow:
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="El numero de trapecios debe ser \n mayor que 0", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
-        elif '/x' in self.entry_functiontrap.get() and float(self.entry_intervalBtrap.get()) >= 0:
+        elif '/x' in self.entry_functiontrap.get() and float(self.entry_intervalBtrap.get()) == 0:
             self.windowsalert = tkinter.Toplevel(self.windowtrap)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
