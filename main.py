@@ -403,7 +403,7 @@ class MainWindow:
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="X0 debe ser menor que X1", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
-        elif float(self.entry_errsec.get()) == float(self.entry_errsec.get()):
+        elif float(self.entry_x0sec.get()) == float(self.entry_x1sec.get()):
             self.windowsalert = tkinter.Toplevel(self.windowsec)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
@@ -549,7 +549,7 @@ class MainWindow:
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="El intervalo a debe ser menor que el intervalo b", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
-        elif float(self.entry_ntrap.get()) <= 0:
+        elif '/x' in self.entry_functiontrap.get() and float(self.entry_ntrap.get()) <= 0:
             self.windowsalert = tkinter.Toplevel(self.windowtrap)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
@@ -701,7 +701,7 @@ class MainWindow:
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="El valor de a debe ser diferente que b", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
-        elif float(self.ntrapsim.get()) <= 0:
+        elif float(self.entry_ntrapsim.get()) <= 0:
             self.windowsalert = tkinter.Toplevel(self.windowsimp)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
