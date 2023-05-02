@@ -216,12 +216,12 @@ class MainWindow:
         self.open_windows.append(self.windowbis)
 
     def startBiseccion(self):
-        if '/x' in self.entry_functionbis.get() and float(self.entry_x0bis.get()) < 0 and float(self.entry_intervalBbis.get()) > 0:
+        if '/x' in self.entry_functionbis.get() and float(self.entry_x0bis.get()) <= 0 and float(self.entry_intervalBbis.get()) >= 0:
             self.windowsalert = tkinter.Toplevel(self.windowbis)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o\n existe una division entre cero", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functionbis.get() == '' or self.entry_x0bis.get() == '' or self.entry_intervalBbis.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowbis)
@@ -229,6 +229,27 @@ class MainWindow:
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="Por favor ingrese todos los datos", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif '/x' in self.entry_functionbis.get() and float(self.entry_intervalBbis.get()) == 0:
+            self.windowsalert = tkinter.Toplevel(self.windowbis)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o\n existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0bis.get()) > float(self.entry_intervalBbis.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowbis)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El intervalo [a,b] es incorrecto", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0bis.get()) == float(self.entry_intervalBbis.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowbis)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El intervalo [a,b] es incorrecto", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         else:
             self.windowbis.withdraw()
@@ -354,12 +375,12 @@ class MainWindow:
         self.open_windows.append(self.windowsec)
 
     def startSecante(self):
-        if '/x' in self.entry_functionsec.get() and float(self.entry_x0sec.get()) < 0 and float(self.entry_x1sec.get()) > 0:
+        if '/x' in self.entry_functionsec.get() and float(self.entry_x0sec.get()) <= 0 and float(self.entry_x1sec.get()) >= 0:
             self.windowsalert = tkinter.Toplevel(self.windowsec)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o existe una division entre cero", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functionsec.get() == '' or self.entry_x1sec.get() == '' or self.entry_errsec.get() == '' or self.entry_x0sec.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowsec)
@@ -367,6 +388,27 @@ class MainWindow:
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="Por favor ingrese todos los datos", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif '/x' in self.entry_functionsec.get() and float(self.entry_x1sec.get()) >= 0:
+            self.windowsalert = tkinter.Toplevel(self.windowsec)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o\n existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0sec.get()) > float(self.entry_x1sec.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowsec)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="X0 debe ser menor que X1", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_errsec.get()) == float(self.entry_errsec.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowsec)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="X0 debe ser diferente que X1", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         else:
             self.windowsec.withdraw()
@@ -486,12 +528,12 @@ class MainWindow:
             self.open_windows.append(self.windowtrap)
 
     def startTrapecio(self):
-        if '/x' in self.entry_functiontrap.get() and float(self.entry_x0trap.get()) < 0 and float(self.entry_intervalBtrap.get()) > 0:
+        if '/x' in self.entry_functiontrap.get() and float(self.entry_x0trap.get()) <= 0 and float(self.entry_intervalBtrap.get()) >= 0:
             self.windowsalert = tkinter.Toplevel(self.windowtrap)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o \n existe una division entre cero", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functiontrap.get() == '' or self.entry_x0trap.get() == '' or self.entry_intervalBtrap.get() == '' or self.entry_ntrap.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowtrap)
@@ -499,6 +541,34 @@ class MainWindow:
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="Por favor ingrese todos los datos", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0trap.get()) > float(self.entry_intervalBtrap.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowtrap)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El intervalo a debe ser menor que el intervalo b", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_ntrap.get()) <= 0:
+            self.windowsalert = tkinter.Toplevel(self.windowtrap)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El numero de trapecios debe ser \n mayor que 0", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif '/x' in self.entry_functiontrap.get() and float(self.entry_intervalBtrap.get()) >= 0:
+            self.windowsalert = tkinter.Toplevel(self.windowtrap)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o \n existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0trap.get()) == float(self.entry_intervalBtrap.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowtrap)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El intervalo a debe ser diferente \n que el intervalo b", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         else:
             self.windowtrap.withdraw()
@@ -589,12 +659,12 @@ class MainWindow:
             self.open_windows.append(self.windowsimp)
 
     def startSimpson(self):
-        if '/x' in self.entry_functionsim.get() and float(self.entry_x0sim.get()) < 0 and float(self.entry_intervalBsim.get()) > 0:
+        if '/x' in self.entry_functionsim.get() and float(self.entry_x0sim.get()) <= 0 and float(self.entry_intervalBsim.get()) >= 0 :
             self.windowsalert = tkinter.Toplevel(self.windowsimp)
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o \n existe una division entre cero", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functionsim.get() == '' or self.entry_intervalBsim.get() == '' or self.entry_x0sim.get() == '' or self.entry_ntrapsim.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowsimp)
@@ -609,6 +679,34 @@ class MainWindow:
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
             self.labelalert = tkinter.Label(self.windowsalert, text="El numero de trapecios debe ser par", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif '/x' in self.entry_functionsim.get() and float(self.entry_intervalBsim.get()) ==0:
+            self.windowsalert = tkinter.Toplevel(self.windowsimp)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o \n existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0sim.get()) > float(self.entry_intervalBsim.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowsimp)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El valor de a debe ser menor que b", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.entry_x0sim.get()) == float(self.entry_intervalBsim.get()):
+            self.windowsalert = tkinter.Toplevel(self.windowsimp)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El valor de a debe ser diferente que b", font="Helvetica 13", background="darkgray")
+            self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        elif float(self.ntrapsim.get()) <= 0:
+            self.windowsalert = tkinter.Toplevel(self.windowsimp)
+            self.windowsalert.title("Error")
+            self.windowsalert.geometry("300x100")
+            self.windowsalert.configure(background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="El numero de trapecios debe ser mayor que 0", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         else:
             self.windowsimp.withdraw()
