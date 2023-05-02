@@ -72,7 +72,7 @@ class MainWindow:
        #MENSAJE INFORMATIVO
         self.text = tkinter.Text(self.windowpt, width=68,height=4,font="Helvetica 10",state="disabled",bg="lightblue")
         self.text.config(state="normal")
-        texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2)\n"
+        texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2), cubicas np.cbsqrt o  x**(1/3)\n *Funciones trigonométricas antepuestas con np.cos, np.sen \n *El término variable se expresa con x "
         self.text.insert("1.0", texto_ejemplo)
         self.text.config(state="disabled")
         self.text.tag_configure("center", justify="center")
@@ -182,7 +182,7 @@ class MainWindow:
         #Espacio de texto recomendaciones
         self.text = tkinter.Text(self.windowbis, width=56, height=4, font="Helvetica 10", state="disabled",bg="lightblue")
         self.text.config(state="normal")
-        texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2)\n"
+        texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2), cubicas np.cbsqrt o  x**(1/3)\n *Funciones trigonométricas antepuestas con np.cos, np.sen \n *El término variable se expresa con x "
         self.text.insert("1.0", texto_ejemplo)
         self.text.config(state="disabled")
         self.text.tag_configure("center", justify="center")
@@ -221,7 +221,7 @@ class MainWindow:
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o\n existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o\n existe una division entre cero, por favor elija otro intervalo para evaluar la funcion", font="Helvetica 13", background="darkgray")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functionbis.get() == '' or self.entry_x0bis.get() == '' or self.entry_intervalBbis.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowbis)
@@ -334,7 +334,7 @@ class MainWindow:
         #Area de texto informativa
         self.text = tkinter.Text(self.windowsec, width=60, height=4, font="Helvetica 10", state="disabled",bg="lightblue")
         self.text.config(state="normal")
-        texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2)\n"
+        texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2), cubicas np.cbsqrt o  x**(1/3)\n *Funciones trigonométricas antepuestas con np.cos, np.sen \n *El término variable se expresa con x "
         self.text.insert("1.0", texto_ejemplo)
         self.text.config(state="disabled")
         self.text.tag_configure("center", justify="center")
@@ -487,7 +487,7 @@ class MainWindow:
             #Area de texto informativa
             self.text = tkinter.Text(self.windowtrap, width=66, height=4, font="Helvetica 10", state="disabled",bg="lightblue")
             self.text.config(state="normal")
-            texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2)\n"
+            texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2), cubicas np.cbsqrt o  x**(1/3)\n *Funciones trigonométricas antepuestas con np.cos, np.sen \n *El término variable se expresa con x "
             self.text.insert("1.0", texto_ejemplo)
             self.text.config(state="disabled")
             self.text.tag_configure("center", justify="center")
@@ -618,7 +618,7 @@ class MainWindow:
             self.title.grid(row=0, column=0, columnspan=3, sticky="nsew")
             self.text = tkinter.Text(self.windowsimp, width=67, height=4, font="Helvetica 10", state="disabled",bg="lightblue")
             self.text.config(state="normal")
-            texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2)\n"
+            texto_ejemplo = "Para el ingreso de funciones tener en cuenta:\n *Raices cuadradas: np.sqrt() o x**(1/2), cubicas np.cbsqrt o  x**(1/3)\n *Funciones trigonométricas antepuestas con np.cos, np.sen \n *El término variable se expresa con x "
             self.text.insert("1.0", texto_ejemplo)
             self.text.config(state="disabled")
             self.text.tag_configure("center", justify="center")
@@ -664,7 +664,7 @@ class MainWindow:
             self.windowsalert.title("Error")
             self.windowsalert.geometry("300x100")
             self.windowsalert.configure(background="darkgray")
-            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o \n existe una division entre cero", font="Helvetica 13", background="darkgray")
+            self.labelalert = tkinter.Label(self.windowsalert, text="La funcion no es continua o \n existe una division entre cero", font="Helvetica 13", background="darkgray",anchor="center")
             self.labelalert.grid(row=0, column=0, columnspan=3, sticky="nsew")
         elif self.entry_functionsim.get() == '' or self.entry_intervalBsim.get() == '' or self.entry_x0sim.get() == '' or self.entry_ntrapsim.get() == '':
             self.windowsalert = tkinter.Toplevel(self.windowsimp)
