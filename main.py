@@ -6,6 +6,7 @@ from Secante import secante
 from Punto_Fijo import punto
 from Trapezoide import trapecio
 from MBiseccion import biseccion
+from gauss import gaussMethod
 from Simpson import simpson
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -316,7 +317,7 @@ class MainWindow:
         for i, fila in enumerate(files):
             table.insert("", "end", text=i, values=(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5]))
         table.grid(row=1,column=0,padx=3,pady=3)
-    
+
     def secante (self):
         self.window.withdraw()
         self.windowsec = tkinter.Toplevel(self.window)
@@ -469,7 +470,7 @@ class MainWindow:
         for i, fila in enumerate(files):
             table.insert("", "end", text=i, values=(fila[0], fila[1], fila[2]))
         table.grid(row=1, column=0, padx=3, pady=3)
-    
+
     def trapecio(self):
             self.window.withdraw()
             self.windowtrap = tkinter.Toplevel(self.window)
@@ -602,7 +603,7 @@ class MainWindow:
             back_maintrap.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
             self.open_windows.append(self.windowrestrap)
 
-    def simpson(self):   
+    def simpson(self):
             self.window.withdraw()
             self.windowsimp = tkinter.Toplevel(self.window)
             self.windowsimp.title("Simpson")
@@ -739,8 +740,10 @@ class MainWindow:
             back_maintrap = tkinter.Button(self.windowressimp, text="Regresar", width=10, height=2,command=lambda: self.back(self.windowressimp))
             back_maintrap.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
             self.open_windows.append(self.windowressimp)
-    
+
+
     def gauss(self):
+
             self.window.withdraw()
             self.windowgauss = tkinter.Toplevel(self.window)
             self.windowgauss.title("Gauss-Seidel")
@@ -753,9 +756,89 @@ class MainWindow:
             self.windowgauss.geometry("+{}+{}".format(x, y))
             self.title = tkinter.Label(self.windowgauss, text="Metodo Gauss-seidel", bg="gold", font="Helvetica 20")
             self.title.grid(row=0, column=0, columnspan=3, sticky="nsew")
+
+            self.etiqueta_filas = tkinter.Label(self.windowgauss, text=" Numero de Filas:")
+            self.etiqueta_filas.grid(row=1, column=0)
+            self.caja_filas = tkinter.Entry(self.windowgauss, validate="key")
+            self.caja_filas.config(validatecommand=(self.windowgauss.register(self.validate), "%S"))
+            self.caja_filas.grid(row=1, column=1)
+
+            self.etiqueta_columnas = tkinter.Label(self.windowgauss, text="Numero de Columnas:")
+            self.etiqueta_columnas.grid(row=2, column=0)
+            self.caja_columnas = tkinter.Entry(self.windowgauss, validate="key")
+            self.caja_columnas.config(validatecommand=(self.windowgauss.register(self.validate), "%S"))
+            self.caja_columnas.grid(row=2, column=1)
+
+            self.etiqueta_terminos = tkinter.Label(self.windowgauss, text="Numero de terminos independientes:")
+            self.etiqueta_terminos.grid(row=3, column=0)
+            self.caja_terminos = tkinter.Entry(self.windowgauss, validate="key")
+            self.caja_terminos.config(validatecommand=(self.windowgauss.register(self.validate), "%S"))
+            self.caja_terminos.grid(row=3, column=1)
+
+            self.boton_crear = tkinter.Button(self.windowgauss, text="Crear matriz", command=self.crear_matriz)
+            self.boton_crear.grid(row=5, columnspan=2)
+            self.boton_crear = tkinter.Button(self.windowgauss, text="Crear vector de terminos Independientes", command=self.crear_vectorI)
+            self.boton_crear.grid(row=6, columnspan=2)
+
+
             back_main = tkinter.Button(self.windowgauss, text="Regresar", width=10, height=2, command=lambda: self.back(self.windowgauss))
-            back_main.grid(row=2, column=1)
+            back_main.grid(row=10, column=1)
             self.open_windows.append(self.windowgauss)
+
+    def crear_matriz(self):
+        frame_matriz = tkinter.Toplevel()
+        # Obtener los valores ingresados
+        numFilas = int(self.caja_filas.get())
+        numColumnas = int(self.caja_columnas.get())
+
+        # Crear la matriz
+        self.matriz = []
+        for i in range(numFilas):
+            self.fila = []
+            for j in range(numColumnas):
+                self.caja = tkinter.Entry(frame_matriz, width=6, validate="key")
+                self.caja.config(validatecommand=(self.windowgauss.register(self.validate), "%S"))
+                self.caja.grid(row=i, column=j)
+                self.fila.append(self.caja)
+            self.matriz.append(self.fila)
+        # Agregar el botón de resolver
+        boton_resolver = tkinter.Button(frame_matriz, text="Resolver", command=self.resolver_matriz)
+        boton_resolver.grid()
+
+    def crear_vectorI(self):
+
+        frame_matriz = tkinter.Toplevel()
+        tkinter.Label(frame_matriz, text="---VECTOR DE TERMINOS INDEPENDIENTES---").grid(row=0, column=0)
+        tamano = int(self.caja_terminos.get())
+        self.b_entries = []
+
+        for i in range(tamano):
+
+            self.entry = tkinter.Entry(frame_matriz, width=6, validate="key")
+            self.entry.config(validatecommand=(frame_matriz.register(self.validate), "%S"))
+            self.entry.grid(row=i + 1, column=tamano)
+            self.nums = int(self.entry[i].get())
+            self.b_entries.append(self.nums)
+
+
+        print(self.b_entries)
+        tkinter.Button(frame_matriz, text="Siguiente", command=self.resolver_matriz).grid(row=(tamano + 1), column=tamano)
+
+
+    def resolver_matriz(self):
+        #Obtener los valores ingresados
+        numFilas = int(self.caja_filas.get())
+        numColumnas = int(self.caja_columnas.get())
+        #matriz=[]
+        for i in range(numFilas):
+            #fila=[]
+            for j in range(numColumnas):
+                print(self.matriz[i][j].get())
+                self.fila.append(self.matriz[i][j].get())
+            self.matriz.append(self.fila)
+        #gaussMethod(self.caja_filas, self.caja_columnas,self.matriz)
+
+
 
     def back(self,actual_window):
        actual_window.destroy()
